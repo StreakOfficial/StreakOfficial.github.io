@@ -3,46 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link rel="icon" href="favicon.png">
-
-<title>Streak Discord</title>
+<title>Streak | Discord</title>
 
 <style>
-body{
-margin:0;
-background:#050008;
-color:white;
-font-family:Arial;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#050008;color:white;font-family:Arial,sans-serif}
 
-header{
-padding:15px;
-border-bottom:1px solid rgba(180,60,255,.3);
-}
+header{position:sticky;top:0;z-index:100;background:rgba(5,0,8,.95);border-bottom:1px solid rgba(180,60,255,.4);backdrop-filter:blur(12px)}
+.nav{max-width:1200px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{color:white;text-decoration:none;font-weight:bold;letter-spacing:4px}
+.nav-links{display:flex;gap:10px;flex-wrap:wrap}
+.nav-links a{color:white;text-decoration:none;padding:9px 16px;border-radius:999px;border:1px solid rgba(180,60,255,.35);background:rgba(20,0,35,.35);transition:.3s}
+.nav-links a:hover{border-color:#d946ff;box-shadow:0 0 16px rgba(217,70,255,.35)}
 
-.container{
-max-width:900px;
-margin:auto;
-padding:40px;
-}
+.hero{text-align:center;padding:110px 20px 70px}
+.hero h1{font-size:clamp(48px,7vw,82px);letter-spacing:8px;margin-bottom:20px}
+.hero p{max-width:760px;margin:auto;color:#d8b9ff;font-size:18px;line-height:1.7}
+.discord-btn{display:inline-block;margin-top:35px;padding:13px 30px;color:white;text-decoration:none;border-radius:999px;border:1px solid rgba(217,70,255,.75);transition:.3s}
+.discord-btn:hover{box-shadow:0 0 18px rgba(217,70,255,.45)}
 
-.box{
-background:rgba(10,0,18,.9);
-padding:20px;
-border-radius:15px;
-border:1px solid rgba(180,60,255,.3);
-margin-bottom:20px;
-}
+.container{max-width:1120px;margin:auto;padding:20px 22px 90px}
+.section{margin-top:70px}
+h2{font-size:36px;margin-bottom:24px;color:#f3d8ff;text-shadow:0 0 14px rgba(217,70,255,.6)}
 
-a{color:white;text-decoration:none}
+.box{position:relative;border-radius:22px;background:rgba(8,0,14,.96);padding:28px;overflow:hidden}
+.box::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#ffffff,#d946ff,transparent);background-size:300% 100%;animation:moveBorder 5s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
 
-button{
-padding:10px 20px;
-border-radius:999px;
-border:1px solid #a64dff;
-background:transparent;
-color:white;
+@keyframes moveBorder{from{background-position:300% 0}to{background-position:0 0}}
+
+.line-list{list-style:none}
+.line-list li{position:relative;padding:16px 0;color:#e8dcf2;font-size:16px;line-height:1.5;border-bottom:1px solid rgba(180,60,255,.18)}
+.line-list li::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#ffffff,#d946ff,transparent);background-size:300% 100%;animation:moveBorder 5s linear infinite}
+.line-list li:last-child{border-bottom:none}
+.line-list li:last-child::after{display:none}
+
+.role{color:#e19bff;font-weight:bold;display:inline-block;min-width:170px}
+.value{color:#bfa7ce}
+
+footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,.25);color:#9b7db0;font-size:13px;margin-top:80px}
+
+@media(max-width:850px){
+.nav{flex-direction:column;gap:12px}
+.nav-links{justify-content:center}
+.role{display:block;margin-bottom:6px}
 }
 </style>
 </head>
@@ -50,47 +54,89 @@ color:white;
 <body>
 
 <header>
-<a href="index.html">← Back Home</a>
+<div class="nav">
+<a class="logo" href="index.html">STREAK</a>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="index.html#features">Features</a>
+<a href="index.html#showcase">Showcase</a>
+<a href="index.html#updates">Updates</a>
+<a href="discord.html">Discord</a>
+</div>
+</div>
 </header>
+
+<section class="hero">
+<h1>DISCORD</h1>
+
+<p>
+Join the official Streak community for updates,
+announcements, previews, support and future releases.
+</p>
+
+<a class="discord-btn" href="https://discord.gg/SycNENPckP" target="_blank">
+Join Discord →
+</a>
+</section>
 
 <div class="container">
 
-<div class="box">
-<h2>Discord</h2>
-<p>Join the Streak community</p>
-<a href="https://discord.gg/SycNENPckP">
-<button>Join Discord</button>
-</a>
-</div>
-
-<div class="box">
+<section class="section">
 <h2>Rules</h2>
-<ul>
-<li>Be respectful</li>
-<li>No spam</li>
-<li>No leaks</li>
-<li>Follow Discord TOS</li>
-</ul>
-</div>
 
 <div class="box">
+<ul class="line-list">
+<li>Be respectful to all members.</li>
+<li>No NSFW, harassment, or spam.</li>
+<li>Do not share, leak, or give away your key.</li>
+<li>Do not resell scripts unless you're an approved reseller.</li>
+<li>Follow Discord's Terms of Service.</li>
+<li>Use common sense and listen to staff.</li>
+</ul>
+</div>
+</section>
+
+<section class="section">
 <h2>Staff</h2>
-<ul>
-<li>Owner: @zdkqx</li>
-<li>Co-Owner: @lunyrae</li>
-<li>Admin: N/A</li>
-</ul>
-</div>
 
 <div class="box">
-<h2>Announcements</h2>
-<ul>
-<li>Server under construction</li>
-<li>Website still in development</li>
+<ul class="line-list">
+<li><span class="role">Owner</span><span class="value">@zdkqx (Streak)</span></li>
+<li><span class="role">Co-Owner</span><span class="value">@lunyrae</span></li>
+<li><span class="role">Administrator</span><span class="value">N/A</span></li>
+<li><span class="role">Moderator</span><span class="value">N/A</span></li>
+<li><span class="role">Support</span><span class="value">N/A</span></li>
 </ul>
 </div>
+</section>
+
+<section class="section">
+<h2>Server Information</h2>
+
+<div class="box">
+<ul class="line-list">
+<li><span class="role">Founded</span><span class="value">10/06/2026</span></li>
+</ul>
+</div>
+</section>
+
+<section class="section">
+<h2>Announcements</h2>
+
+<div class="box">
+<ul class="line-list">
+<li>No announcements yet.</li>
+<li>Future development updates, release information and community news will appear here.</li>
+</ul>
+</div>
+</section>
 
 </div>
+
+<footer>
+© 2026 Streak Official
+</footer>
 
 </body>
 </html>
