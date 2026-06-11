@@ -293,7 +293,6 @@ h2{
   font-size:15px;
 }
 
-/* showcase */
 .showcase{
   grid-template-columns:1.2fr 1fr 1fr;
 }
@@ -324,16 +323,29 @@ footer{
 
 <body>
 
-<!-- AUDIO CLICK SOUND -->
+<!-- AUDIO SYSTEM (ADDED ONLY) -->
 <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
 
 <script>
 const clickSound = document.getElementById("clickSound");
+const bgMusic = document.getElementById("bgMusic");
 
-document.addEventListener("click", (e) => {
+/* subtle click */
+document.addEventListener("click", () => {
+  clickSound.volume = 0.08;
   clickSound.currentTime = 0;
   clickSound.play();
 });
+
+/* enter site music */
+function enterSite(){
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("site").classList.add("visible");
+
+  bgMusic.volume = 0.35;
+  bgMusic.play();
+}
 </script>
 
 <div class="code-bg">
@@ -400,13 +412,6 @@ document.addEventListener("click", (e) => {
 <footer>
   © 2026 Streak Official
 </footer>
-
-<script>
-function enterSite(){
-  document.getElementById("intro").classList.add("hidden");
-  document.getElementById("site").classList.add("visible");
-}
-</script>
 
 </body>
 </html>
