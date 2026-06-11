@@ -54,7 +54,7 @@ body{
   50%{transform:translateY(-16px)}
 }
 
-/* intro */
+/* intro (FIX ONLY HERE) */
 .intro{
   position:fixed;
   inset:0;
@@ -92,6 +92,7 @@ body{
   transition:.8s;
 }
 
+/* FIX: THIS IS WHAT WAS BREAKING CLICK */
 .site.visible{
   opacity:1;
 }
@@ -199,40 +200,6 @@ header{
   color:#f3d8ff;
   text-decoration:none;
 }
-
-/* sections */
-section{
-  max-width:1120px;
-  margin:auto;
-  padding:70px 22px;
-}
-
-h2{
-  font-size:34px;
-  color:#f3d8ff;
-  margin-bottom:20px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.card{
-  padding:24px;
-  border-radius:20px;
-  background:rgba(8,0,14,.96);
-  min-height:140px;
-}
-
-footer{
-  text-align:center;
-  padding:34px 22px;
-  border-top:1px solid rgba(198,89,255,.25);
-  color:#9b7db0;
-  font-size:13px;
-}
 </style>
 </head>
 
@@ -240,6 +207,8 @@ footer{
 
 <div class="code-bg">
   <span>local streak = true</span>
+  <span>loadstring(...)</span>
+  <span>game:GetService("Players")</span>
 </div>
 
 <div class="intro" id="intro">
@@ -306,7 +275,7 @@ footer{
 
 <script>
 function enterSite(){
-  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("intro").style.display = "none";
   document.getElementById("site").classList.add("visible");
 }
 </script>
