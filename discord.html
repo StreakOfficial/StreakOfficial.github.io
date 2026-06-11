@@ -56,6 +56,31 @@ footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,
 
 <body>
 
+<!-- 💥 AUDIO ADDED (NO DESIGN CHANGES) -->
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="music.mp3" preload="auto" loop></audio>
+
+<script>
+const clickSound = document.getElementById("clickSound");
+const bgMusic = document.getElementById("bgMusic");
+
+// 🔊 subtle click sound
+document.addEventListener("click", () => {
+  clickSound.volume = 0.08;
+  clickSound.currentTime = 0;
+  clickSound.play();
+});
+
+// 🎵 start music on first interaction
+function startMusic(){
+  bgMusic.volume = 0.35;
+  bgMusic.play();
+}
+
+// attach music start to first click anywhere
+document.addEventListener("click", startMusic, { once:true });
+</script>
+
 <header>
 <div class="nav">
 <a class="logo" href="index.html">STREAK</a>
