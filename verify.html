@@ -7,19 +7,64 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
-<body>
+<body style="margin:0;background:#050008;color:white;font-family:Arial;">
 
-<h1>Verify Account</h1>
+<div style="
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+">
 
-<div class="cf-turnstile" data-sitekey="0x4AAAAAADkLfLOqBpHWSsdM"></div>
+  <div style="
+    width:360px;
+    padding:28px;
+    background:rgba(10,0,20,0.92);
+    border:1px solid rgba(180,80,255,0.4);
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(180,80,255,0.15);
+  ">
 
-<button onclick="verify()">Verify</button>
+    <h1 style="margin-bottom:10px;">Verify Account</h1>
+
+    <p style="color:#caa6ff;margin-bottom:18px;">
+      Complete CAPTCHA to get access
+    </p>
+
+    <!-- CAPTCHA -->
+    <div style="display:flex;justify-content:center;">
+      <div class="cf-turnstile"
+        data-sitekey="0x4AAAAAADkLfLOqBpHWSsdME"></div>
+    </div>
+
+    <br>
+
+    <button onclick="verify()" style="
+      padding:10px 18px;
+      border:none;
+      border-radius:10px;
+      background:#d946ff;
+      color:white;
+      cursor:pointer;
+    ">
+      Verify
+    </button>
+
+  </div>
+
+</div>
 
 <script>
 async function verify() {
-  const token = document.querySelector('[name="cf-turnstile-response"]').value;
 
+  const token = document.querySelector('[name="cf-turnstile-response"]').value;
   const userId = new URLSearchParams(window.location.search).get("user");
+
+  if (!token) {
+    alert("Complete CAPTCHA first");
+    return;
+  }
 
   const res = await fetch("https://streak-api-ojbd.onrender.com/verify", {
     method: "POST",
