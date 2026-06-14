@@ -15,30 +15,26 @@ body{
   overflow-x:hidden;
 }
 
-/* =========================
-   CYBER MOVING BACKGROUND
-========================= */
+/* KEEP YOUR EXISTING BACKGROUND + ADD FLOW LAYER */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(160,60,255,0.22), transparent 40%),
-    radial-gradient(circle at 80% 60%, rgba(255,0,200,0.12), transparent 45%),
+    radial-gradient(circle at 25% 20%, rgba(160,60,255,0.22), transparent 40%),
+    radial-gradient(circle at 75% 60%, rgba(255,0,200,0.12), transparent 45%),
     radial-gradient(circle at 50% 90%, rgba(120,0,255,0.18), transparent 55%);
   filter:blur(60px);
-  animation:floatBG 10s ease-in-out infinite alternate;
+  animation:flowBG 9s ease-in-out infinite alternate;
   z-index:-1;
 }
 
-@keyframes floatBG{
-  0%{transform:translateY(-10px) scale(1)}
-  100%{transform:translateY(10px) scale(1.05)}
+@keyframes flowBG{
+  0%{transform:translateY(-10px) scale(1);}
+  100%{transform:translateY(10px) scale(1.05);}
 }
 
-/* =========================
-   INTRO
-========================= */
+/* INTRO */
 .intro{
   position:fixed;
   inset:0;
@@ -55,33 +51,20 @@ body::before{
   width:520px;
   max-width:85vw;
   cursor:pointer;
-  animation:logoFloat 4s ease-in-out infinite;
-  filter:drop-shadow(0 0 30px #b640ff);
+  animation:logoPulse 3s infinite ease-in-out;
+  filter:drop-shadow(0 0 26px #b640ff);
 }
 
-.intro-text{
-  text-align:center;
-  margin-top:14px;
-  font-size:12px;
-  letter-spacing:5px;
-  color:#dcb8ff;
+@keyframes logoPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
 }
 
-@keyframes logoFloat{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-  100%{transform:translateY(0)}
-}
-
-/* =========================
-   SITE
-========================= */
+/* SITE */
 .site{opacity:0;transition:.7s ease}
 .site.visible{opacity:1}
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 header{
   position:sticky;
   top:0;
@@ -130,33 +113,29 @@ nav a{
 nav a:hover{
   transform:translateY(-4px);
   border-color:#d946ff;
-  box-shadow:0 0 20px rgba(217,70,255,.45);
+  box-shadow:0 0 18px rgba(217,70,255,.35);
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero{
   min-height:88vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  padding:90px 22px 70px;
-  position:relative;
+  padding:90px 22px;
 }
 
 .hero-logo{
   width:430px;
   max-width:90vw;
-  animation:logoFloat 4s ease-in-out infinite;
+  animation:logoPulse 3s infinite ease-in-out;
   filter:drop-shadow(0 0 25px #7a1fff);
 }
 
 h1{
   font-size:clamp(38px,5vw,64px);
   letter-spacing:8px;
-  margin-top:10px;
 }
 
 .subtitle{
@@ -171,12 +150,9 @@ h1{
   padding:11px 20px;
   border-radius:999px;
   border:1px solid rgba(217,70,255,.65);
-  color:#f3d8ff;
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* SECTIONS */
 section{
   max-width:1120px;
   margin:auto;
@@ -194,9 +170,7 @@ h2{
   color:#f3d8ff;
 }
 
-/* =========================
-   CARDS (FIXED HOVER)
-========================= */
+/* CARDS */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -204,36 +178,29 @@ h2{
 }
 
 .card{
-  position:relative;
   padding:24px;
-  min-height:150px;
   border-radius:22px;
   background:rgba(8,0,14,.96);
   border:1px solid rgba(188,70,255,.35);
   transition:.25s;
-  cursor:pointer;
 }
 
 .card:hover{
-  transform:translateY(-8px) scale(1.02);
-  box-shadow:0 0 30px rgba(180,60,255,.25);
+  transform:translateY(-8px);
+  box-shadow:0 0 25px rgba(180,60,255,.25);
 }
 
 .card h3{color:#e19bff;margin-bottom:10px}
 .card p{color:#d8cde0;line-height:1.6}
 
-/* =========================
-   SHOWCASE LINKS
-========================= */
+/* CLICKABLE FIX */
 .card-link{
   text-decoration:none;
   color:inherit;
   display:block;
 }
 
-/* =========================
-   TAG
-========================= */
+/* TAG */
 .tag{
   display:inline-block;
   margin-bottom:12px;
@@ -244,9 +211,7 @@ h2{
   color:#e8c3ff;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 footer{
   text-align:center;
   padding:34px 22px;
@@ -254,9 +219,7 @@ footer{
   font-size:13px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 @media(max-width:850px){
   .nav-wrap{flex-direction:column}
   .grid{grid-template-columns:1fr}
@@ -266,34 +229,30 @@ footer{
 
 <body>
 
-<!-- INTRO -->
 <div class="intro" id="intro">
-  <div>
-    <img class="intro-logo" src="streak-logo.png" onclick="enterSite()" />
-    <div class="intro-text">CLICK TO ENTER</div>
-  </div>
+  <img class="intro-logo" src="streak-logo.png" onclick="enterSite()">
 </div>
 
-<!-- SITE -->
 <div class="site" id="site">
 
 <header>
-  <div class="nav-wrap">
-    <a class="brand" href="#home">
-      <img src="streak-logo.png">
-      STREAK
-    </a>
+<div class="nav-wrap">
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#features">Features</a>
-      <a href="#showcase">Showcase</a>
-      <a href="discord.html">Discord</a>
-    </nav>
-  </div>
+<a class="brand" href="#home">
+  <img src="streak-logo.png">
+  STREAK
+</a>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#features">Features</a>
+  <a href="#showcase">Showcase</a>
+  <a href="discord.html">Discord</a>
+</nav>
+
+</div>
 </header>
 
-<!-- HERO -->
 <main class="hero" id="home">
   <div>
     <img class="hero-logo" src="streak-logo.png">
@@ -303,7 +262,6 @@ footer{
   </div>
 </main>
 
-<!-- FEATURES (FIXED VISUAL FLOW STILL SAME STYLE) -->
 <section id="features">
   <div class="section-head">
     <h2>Features</h2>
@@ -313,23 +271,22 @@ footer{
 
     <div class="card">
       <h3>Cyber Interface</h3>
-      <p>Advanced purple-black UI system with smooth animations.</p>
+      <p>Advanced UI system with smooth animations.</p>
     </div>
 
     <div class="card">
       <h3>Performance Focused</h3>
-      <p>Optimized experience across all devices.</p>
+      <p>Optimized cross-platform experience.</p>
     </div>
 
     <div class="card">
-      <h3>Security Core</h3>
-      <p>Verification system with CAPTCHA + Discord roles.</p>
+      <h3>System Core</h3>
+      <p>Backend systems powering the platform.</p>
     </div>
 
   </div>
 </section>
 
-<!-- SHOWCASE (CLICKABLE FIXED + NO "COMING SOON") -->
 <section id="showcase">
   <div class="section-head">
     <h2>Showcase</h2>
@@ -341,7 +298,7 @@ footer{
       <div class="card">
         <span class="tag">INTERFACE</span>
         <h3>UI System</h3>
-        <p>Main interface framework and visual structure.</p>
+        <p>Main interface framework and structure.</p>
       </div>
     </a>
 
@@ -353,11 +310,11 @@ footer{
       </div>
     </a>
 
-    <a class="card-link" href="security.html">
+    <a class="card-link" href="core-preview.html">
       <div class="card">
-        <span class="tag">SECURITY</span>
-        <h3>Verification Engine</h3>
-        <p>Discord OAuth + CAPTCHA role system.</p>
+        <span class="tag">SYSTEM</span>
+        <h3>Platform Core</h3>
+        <p>Core infrastructure and platform logic.</p>
       </div>
     </a>
 
@@ -365,7 +322,7 @@ footer{
 </section>
 
 <footer>
-  © 2026 Streak Official
+© 2026 Streak Official
 </footer>
 
 </div>
