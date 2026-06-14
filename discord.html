@@ -11,12 +11,34 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:#050008;color:white;font-family:Arial,sans-serif}
 
-header{position:sticky;top:0;z-index:100;background:rgba(5,0,8,.95);border-bottom:1px solid rgba(180,60,255,.4);backdrop-filter:blur(12px)}
-.nav{max-width:1200px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+/* FIX 1: MATCH MAIN PAGE BACKGROUND */
+body{
+  background:#050008;
+  color:white;
+  font-family:Arial,sans-serif;
+}
 
-/* ONLY CHANGE: allow logo + text */
+/* HEADER */
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(5,0,8,.95);
+  border-bottom:1px solid rgba(180,60,255,.4);
+  backdrop-filter:blur(12px);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* FIX 2: LOGO NEXT TO STREAK TEXT */
 .logo{
   display:flex;
   align-items:center;
@@ -32,36 +54,131 @@ header{position:sticky;top:0;z-index:100;background:rgba(5,0,8,.95);border-botto
   filter:drop-shadow(0 0 10px #b640ff);
 }
 
+/* NAV LINKS (UNCHANGED) */
 .nav-links{display:flex;gap:10px;flex-wrap:wrap}
-.nav-links a{color:white;text-decoration:none;padding:9px 16px;border-radius:999px;border:1px solid rgba(180,60,255,.35);background:rgba(20,0,35,.35);transition:.3s}
-.nav-links a:hover{border-color:#d946ff;box-shadow:0 0 16px rgba(217,70,255,.35)}
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  padding:9px 16px;
+  border-radius:999px;
+  border:1px solid rgba(180,60,255,.35);
+  background:rgba(20,0,35,.35);
+  transition:.3s;
+}
+.nav-links a:hover{
+  border-color:#d946ff;
+  box-shadow:0 0 16px rgba(217,70,255,.35);
+}
 
-.hero{text-align:center;padding:110px 20px 70px}
-.hero h1{font-size:clamp(48px,7vw,82px);letter-spacing:8px;margin-bottom:20px}
-.hero p{max-width:760px;margin:auto;color:#d8b9ff;font-size:18px;line-height:1.7}
-.discord-btn{display:inline-block;margin-top:35px;padding:13px 30px;color:white;text-decoration:none;border-radius:999px;border:1px solid rgba(217,70,255,.75);transition:.3s}
-.discord-btn:hover{box-shadow:0 0 18px rgba(217,70,255,.45)}
+/* HERO */
+.hero{
+  text-align:center;
+  padding:110px 20px 70px;
+}
+.hero h1{
+  font-size:clamp(48px,7vw,82px);
+  letter-spacing:8px;
+  margin-bottom:20px;
+}
+.hero p{
+  max-width:760px;
+  margin:auto;
+  color:#d8b9ff;
+  font-size:18px;
+  line-height:1.7;
+}
 
-.container{max-width:1120px;margin:auto;padding:20px 22px 90px}
+.discord-btn{
+  display:inline-block;
+  margin-top:35px;
+  padding:13px 30px;
+  color:white;
+  text-decoration:none;
+  border-radius:999px;
+  border:1px solid rgba(217,70,255,.75);
+  transition:.3s;
+}
+.discord-btn:hover{
+  box-shadow:0 0 18px rgba(217,70,255,.45);
+}
+
+/* CONTAINER */
+.container{
+  max-width:1120px;
+  margin:auto;
+  padding:20px 22px 90px;
+}
+
 .section{margin-top:70px}
-h2{font-size:36px;margin-bottom:24px;color:#f3d8ff;text-shadow:0 0 14px rgba(217,70,255,.6)}
+h2{
+  font-size:36px;
+  margin-bottom:24px;
+  color:#f3d8ff;
+  text-shadow:0 0 14px rgba(217,70,255,.6);
+}
 
-.box{position:relative;border-radius:22px;background:rgba(8,0,14,.96);padding:28px;overflow:hidden}
-.box::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#ffffff,#d946ff,transparent);background-size:300% 100%;animation:moveBorder 5s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+/* BOX */
+.box{
+  position:relative;
+  border-radius:22px;
+  background:rgba(8,0,14,.96);
+  padding:28px;
+  overflow:hidden;
+}
 
-@keyframes moveBorder{from{background-position:300% 0}to{background-position:0 0}}
+.box::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:inherit;
+  background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#ffffff,#d946ff,transparent);
+  background-size:300% 100%;
+  animation:moveBorder 5s linear infinite;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  pointer-events:none;
+}
 
+@keyframes moveBorder{
+  from{background-position:300% 0}
+  to{background-position:0 0}
+}
+
+/* LIST */
 .line-list{list-style:none}
-.line-list li{position:relative;padding:16px 0;color:#e8dcf2;font-size:16px;line-height:1.5;border-bottom:1px solid rgba(180,60,255,.18)}
-.line-list li::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#ffffff,#d946ff,transparent);background-size:300% 100%;animation:moveBorder 5s linear infinite}
-.line-list li:last-child{border-bottom:none}
-.line-list li:last-child::after{display:none}
+.line-list li{
+  position:relative;
+  padding:16px 0;
+  color:#e8dcf2;
+  font-size:16px;
+  line-height:1.5;
+  border-bottom:1px solid rgba(180,60,255,.18);
+}
 
-.role{color:#e19bff;font-weight:bold;display:inline-block;min-width:170px}
+.line-list li:last-child{border-bottom:none}
+
+.role{
+  color:#e19bff;
+  font-weight:bold;
+  display:inline-block;
+  min-width:170px;
+}
+
 .value{color:#bfa7ce}
 
-footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,.25);color:#9b7db0;font-size:13px;margin-top:80px}
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:34px 22px;
+  border-top:1px solid rgba(198,89,255,.25);
+  color:#9b7db0;
+  font-size:13px;
+  margin-top:80px;
+}
 
+/* MOBILE */
 @media(max-width:850px){
 .nav{flex-direction:column;gap:12px}
 .nav-links{justify-content:center}
@@ -75,7 +192,7 @@ footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,
 <header>
 <div class="nav">
 
-<!-- ONLY CHANGE: LOGO ADDED -->
+<!-- FIXED LOGO -->
 <a class="logo" href="index.html">
   <img src="streak-logo.png">
   STREAK
@@ -151,7 +268,7 @@ Join Discord →
 <div class="box">
 <ul class="line-list">
 <li>No announcements yet.</li>
-<li>Future development updates, release information and community news will appear here.</li>
+<li>Future updates will appear here.</li>
 </ul>
 </div>
 </section>
