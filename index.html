@@ -6,32 +6,42 @@
 <title>Streak Official</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Arial,sans-serif;
   background:#050008;
   color:white;
   overflow-x:hidden;
+  position:relative;
 }
 
-/* KEEP YOUR EXISTING BACKGROUND + ADD FLOW LAYER */
+/* 💥 FLOWING CYBER GRADIENT (FIXED) */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-    radial-gradient(circle at 25% 20%, rgba(160,60,255,0.22), transparent 40%),
-    radial-gradient(circle at 75% 60%, rgba(255,0,200,0.12), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(160,60,255,0.22), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(255,0,200,0.12), transparent 45%),
     radial-gradient(circle at 50% 90%, rgba(120,0,255,0.18), transparent 55%);
   filter:blur(60px);
-  animation:flowBG 9s ease-in-out infinite alternate;
+  animation:flowBG 10s ease-in-out infinite alternate;
   z-index:-1;
+  pointer-events:none;
 }
 
 @keyframes flowBG{
-  0%{transform:translateY(-10px) scale(1);}
-  100%{transform:translateY(10px) scale(1.05);}
+  0%{transform:translateY(-12px) scale(1);}
+  100%{transform:translateY(12px) scale(1.05);}
 }
 
 /* INTRO */
@@ -43,26 +53,38 @@ body::before{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  transition:.8s ease;
+  transition:.7s ease;
 }
-.intro.hidden{opacity:0;visibility:hidden;pointer-events:none}
+
+.intro.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
 
 .intro-logo{
   width:520px;
   max-width:85vw;
   cursor:pointer;
-  animation:logoPulse 3s infinite ease-in-out;
+  animation:logoFloat 4s ease-in-out infinite;
   filter:drop-shadow(0 0 26px #b640ff);
 }
 
-@keyframes logoPulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.03)}
+@keyframes logoFloat{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0);}
 }
 
 /* SITE */
-.site{opacity:0;transition:.7s ease}
-.site.visible{opacity:1}
+.site{
+  opacity:0;
+  transition:.7s ease;
+}
+
+.site.visible{
+  opacity:1;
+}
 
 /* HEADER */
 header{
@@ -98,7 +120,11 @@ header{
   filter:drop-shadow(0 0 10px #b640ff);
 }
 
-nav{display:flex;gap:10px;flex-wrap:wrap}
+nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
 nav a{
   color:white;
@@ -129,13 +155,14 @@ nav a:hover{
 .hero-logo{
   width:430px;
   max-width:90vw;
-  animation:logoPulse 3s infinite ease-in-out;
+  animation:logoFloat 4s ease-in-out infinite;
   filter:drop-shadow(0 0 25px #7a1fff);
 }
 
 h1{
   font-size:clamp(38px,5vw,64px);
   letter-spacing:8px;
+  margin-top:10px;
 }
 
 .subtitle{
@@ -170,13 +197,14 @@ h2{
   color:#f3d8ff;
 }
 
-/* CARDS */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
+/* CARDS */
 .card{
   padding:24px;
   border-radius:22px;
@@ -190,8 +218,15 @@ h2{
   box-shadow:0 0 25px rgba(180,60,255,.25);
 }
 
-.card h3{color:#e19bff;margin-bottom:10px}
-.card p{color:#d8cde0;line-height:1.6}
+.card h3{
+  color:#e19bff;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#d8cde0;
+  line-height:1.6;
+}
 
 /* CLICKABLE FIX */
 .card-link{
@@ -221,18 +256,25 @@ footer{
 
 /* MOBILE */
 @media(max-width:850px){
-  .nav-wrap{flex-direction:column}
-  .grid{grid-template-columns:1fr}
+  .nav-wrap{
+    flex-direction:column;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div class="intro" id="intro">
   <img class="intro-logo" src="streak-logo.png" onclick="enterSite()">
 </div>
 
+<!-- SITE -->
 <div class="site" id="site">
 
 <header>
@@ -253,6 +295,7 @@ footer{
 </div>
 </header>
 
+<!-- HERO -->
 <main class="hero" id="home">
   <div>
     <img class="hero-logo" src="streak-logo.png">
@@ -262,6 +305,7 @@ footer{
   </div>
 </main>
 
+<!-- FEATURES -->
 <section id="features">
   <div class="section-head">
     <h2>Features</h2>
@@ -281,12 +325,13 @@ footer{
 
     <div class="card">
       <h3>System Core</h3>
-      <p>Backend systems powering the platform.</p>
+      <p>Backend infrastructure powering the platform.</p>
     </div>
 
   </div>
 </section>
 
+<!-- SHOWCASE (FIXED REDIRECTS) -->
 <section id="showcase">
   <div class="section-head">
     <h2>Showcase</h2>
@@ -298,7 +343,7 @@ footer{
       <div class="card">
         <span class="tag">INTERFACE</span>
         <h3>UI System</h3>
-        <p>Main interface framework and structure.</p>
+        <p>Main interface framework and visual structure.</p>
       </div>
     </a>
 
