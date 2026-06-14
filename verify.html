@@ -1,76 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Verify - Streak</title>
+<title>Verify</title>
 
 <link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.png">
-
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
 
-<div class="bg-glow"></div>
+<h1>Verify Account</h1>
 
-<div style="display:flex;justify-content:center;align-items:center;height:100vh;">
+<div class="cf-turnstile" data-sitekey="0x4AAAAAADkLfLOqBpHWSsdM"></div>
 
-  <div class="box" style="text-align:center;width:350px;">
-
-    <h1>VERIFY</h1>
-    <p>Complete CAPTCHA to get verified</p>
-
-    <!-- TURNSTILE -->
-    <div class="cf-turnstile"
-         data-sitekey="0x4AAAAAADkLfLOqBpHWSsdME"></div>
-
-    <br>
-
-    <button onclick="verify()">Verify</button>
-
-    <p id="status" style="margin-top:10px;color:#aaa;"></p>
-
-  </div>
-
-</div>
+<button onclick="verify()">Verify</button>
 
 <script>
 async function verify() {
-
-  const status = document.getElementById("status");
-  status.innerText = "Verifying...";
-
   const token = document.querySelector('[name="cf-turnstile-response"]').value;
 
-  if (!token) {
-    status.innerText = "Please complete CAPTCHA first ❌";
-    return;
-  }
+  const userId = new URLSearchParams(window.location.search).get("user");
 
-  try {
-    const res = await fetch("https://streak-api-ojbd.onrender.com/verify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        captcha: token
-      })
-    });
+  const res = await fetch("https://streak-api-ojbd.onrender.com/verify", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      captcha: token,
+      userId: userId
+    })
+  });
 
-    const data = await res.text();
-
-    if (data.includes("CAPTCHA failed")) {
-      status.innerText = "Verification failed ❌";
-    } else if (data.includes("success")) {
-      status.innerText = "Verified successfully ✅";
-    } else {
-      status.innerText = data;
-    }
-
-  } catch (err) {
-    status.innerText = "Server error ❌";
-  }
+  alert(await res.text());
 }
 </script>
 
