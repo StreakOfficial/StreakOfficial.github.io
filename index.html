@@ -15,6 +15,30 @@ body{
   overflow-x:hidden;
 }
 
+/* =========================
+   CYBER MOVING BACKGROUND
+========================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(160,60,255,0.22), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(255,0,200,0.12), transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(120,0,255,0.18), transparent 55%);
+  filter:blur(60px);
+  animation:floatBG 10s ease-in-out infinite alternate;
+  z-index:-1;
+}
+
+@keyframes floatBG{
+  0%{transform:translateY(-10px) scale(1)}
+  100%{transform:translateY(10px) scale(1.05)}
+}
+
+/* =========================
+   INTRO
+========================= */
 .intro{
   position:fixed;
   inset:0;
@@ -26,28 +50,38 @@ body{
   transition:.8s ease;
 }
 .intro.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.intro-wrap{text-align:center}
+
 .intro-logo{
   width:520px;
   max-width:85vw;
   cursor:pointer;
-  filter:drop-shadow(0 0 26px #b640ff);
-  animation:logoPulse 3s infinite ease-in-out;
+  animation:logoFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 30px #b640ff);
 }
+
 .intro-text{
+  text-align:center;
   margin-top:14px;
   font-size:12px;
   letter-spacing:5px;
   color:#dcb8ff;
 }
-@keyframes logoPulse{
-  0%,100%{transform:scale(1);filter:drop-shadow(0 0 18px #7b22ff)}
-  50%{transform:scale(1.035);filter:drop-shadow(0 0 36px #d946ff)}
+
+@keyframes logoFloat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
 }
 
+/* =========================
+   SITE
+========================= */
 .site{opacity:0;transition:.7s ease}
 .site.visible{opacity:1}
 
+/* =========================
+   HEADER
+========================= */
 header{
   position:sticky;
   top:0;
@@ -90,17 +124,18 @@ nav a{
   border-radius:999px;
   border:1px solid rgba(190,80,255,.35);
   background:rgba(20,0,35,.35);
-  font-size:13px;
-  font-weight:bold;
   transition:.25s;
 }
 
 nav a:hover{
-  transform:translateY(-2px);
+  transform:translateY(-4px);
   border-color:#d946ff;
-  box-shadow:0 0 16px rgba(217,70,255,.35);
+  box-shadow:0 0 20px rgba(217,70,255,.45);
 }
 
+/* =========================
+   HERO
+========================= */
 .hero{
   min-height:88vh;
   display:flex;
@@ -108,34 +143,20 @@ nav a:hover{
   justify-content:center;
   text-align:center;
   padding:90px 22px 70px;
-  background:
-    radial-gradient(circle at center, rgba(135,35,255,.14), transparent 42%),
-    #050008;
-}
-
-.hero-card{
-  max-width:850px;
-  padding:20px;
-}
-
-.logo-stage{
   position:relative;
-  display:inline-block;
-  margin-bottom:20px;
 }
 
 .hero-logo{
   width:430px;
   max-width:90vw;
-  filter:
-    drop-shadow(0 0 10px #7a1fff)
-    drop-shadow(0 0 22px rgba(217,70,255,.45));
+  animation:logoFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 25px #7a1fff);
 }
 
 h1{
   font-size:clamp(38px,5vw,64px);
   letter-spacing:8px;
-  color:white;
+  margin-top:10px;
 }
 
 .subtitle{
@@ -153,6 +174,9 @@ h1{
   color:#f3d8ff;
 }
 
+/* =========================
+   SECTIONS
+========================= */
 section{
   max-width:1120px;
   margin:auto;
@@ -170,6 +194,9 @@ h2{
   color:#f3d8ff;
 }
 
+/* =========================
+   CARDS (FIXED HOVER)
+========================= */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -183,27 +210,43 @@ h2{
   border-radius:22px;
   background:rgba(8,0,14,.96);
   border:1px solid rgba(188,70,255,.35);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 0 30px rgba(180,60,255,.25);
 }
 
 .card h3{color:#e19bff;margin-bottom:10px}
-.card p{color:#d8cde0;line-height:1.6;font-size:15px}
+.card p{color:#d8cde0;line-height:1.6}
 
-.showcase{grid-template-columns:1.2fr 1fr 1fr}
-
-.showcase .card{
-  min-height:230px;
+/* =========================
+   SHOWCASE LINKS
+========================= */
+.card-link{
+  text-decoration:none;
+  color:inherit;
+  display:block;
 }
 
+/* =========================
+   TAG
+========================= */
 .tag{
   display:inline-block;
   margin-bottom:12px;
   padding:6px 10px;
-  border:1px solid rgba(217,70,255,.5);
   border-radius:999px;
-  color:#e8c3ff;
+  border:1px solid rgba(217,70,255,.5);
   font-size:11px;
+  color:#e8c3ff;
 }
 
+/* =========================
+   FOOTER
+========================= */
 footer{
   text-align:center;
   padding:34px 22px;
@@ -211,13 +254,9 @@ footer{
   font-size:13px;
 }
 
-/* ONLY CHANGE: make cards clickable */
-.card-link{
-  text-decoration:none;
-  color:inherit;
-  display:block;
-}
-
+/* =========================
+   MOBILE
+========================= */
 @media(max-width:850px){
   .nav-wrap{flex-direction:column}
   .grid{grid-template-columns:1fr}
@@ -227,68 +266,70 @@ footer{
 
 <body>
 
+<!-- INTRO -->
 <div class="intro" id="intro">
-  <div class="intro-wrap">
-    <img class="intro-logo" src="streak-logo.png" onclick="enterSite()" alt="Streak Logo">
+  <div>
+    <img class="intro-logo" src="streak-logo.png" onclick="enterSite()" />
     <div class="intro-text">CLICK TO ENTER</div>
   </div>
 </div>
 
+<!-- SITE -->
 <div class="site" id="site">
 
 <header>
   <div class="nav-wrap">
     <a class="brand" href="#home">
       <img src="streak-logo.png">
-      <span>STREAK</span>
+      STREAK
     </a>
 
     <nav>
       <a href="#home">Home</a>
       <a href="#features">Features</a>
       <a href="#showcase">Showcase</a>
-      <a href="#updates">Updates</a>
       <a href="discord.html">Discord</a>
     </nav>
   </div>
 </header>
 
+<!-- HERO -->
 <main class="hero" id="home">
-  <div class="hero-card">
-    <div class="logo-stage">
-      <img class="hero-logo" src="streak-logo.png">
-    </div>
-
+  <div>
+    <img class="hero-logo" src="streak-logo.png">
     <h1>STREAK OFFICIAL</h1>
     <p class="subtitle">A next-generation experience is currently in development.</p>
     <div class="status">Website Coming Soon</div>
   </div>
 </main>
 
+<!-- FEATURES (FIXED VISUAL FLOW STILL SAME STYLE) -->
 <section id="features">
   <div class="section-head">
     <h2>Features</h2>
   </div>
 
   <div class="grid">
+
     <div class="card">
       <h3>Cyber Interface</h3>
-      <p>Stylized system design.</p>
+      <p>Advanced purple-black UI system with smooth animations.</p>
     </div>
 
     <div class="card">
-      <h3>Performance</h3>
-      <p>Optimized and smooth experience.</p>
+      <h3>Performance Focused</h3>
+      <p>Optimized experience across all devices.</p>
     </div>
 
     <div class="card">
-      <h3>Coming Soon</h3>
-      <p>More updates later.</p>
+      <h3>Security Core</h3>
+      <p>Verification system with CAPTCHA + Discord roles.</p>
     </div>
+
   </div>
 </section>
 
-<!-- 💥 ONLY ADDITION: REDIRECTS -->
+<!-- SHOWCASE (CLICKABLE FIXED + NO "COMING SOON") -->
 <section id="showcase">
   <div class="section-head">
     <h2>Showcase</h2>
@@ -296,41 +337,30 @@ footer{
 
   <div class="grid showcase">
 
-    <a href="interface-preview.html" class="card-link">
+    <a class="card-link" href="interface-preview.html">
       <div class="card">
         <span class="tag">INTERFACE</span>
-        <h3>UI Preview</h3>
-        <p>Preview content.</p>
+        <h3>UI System</h3>
+        <p>Main interface framework and visual structure.</p>
       </div>
     </a>
 
-    <a href="development-preview.html" class="card-link">
+    <a class="card-link" href="development-preview.html">
       <div class="card">
-        <span class="tag">DEV</span>
-        <h3>Dev Preview</h3>
-        <p>Development updates.</p>
+        <span class="tag">DEVELOPMENT</span>
+        <h3>Backend System</h3>
+        <p>Live system development and API integration.</p>
       </div>
     </a>
 
-    <a href="release-media.html" class="card-link">
+    <a class="card-link" href="security.html">
       <div class="card">
-        <span class="tag">SOON</span>
-        <h3>More Coming</h3>
-        <p>Future content.</p>
+        <span class="tag">SECURITY</span>
+        <h3>Verification Engine</h3>
+        <p>Discord OAuth + CAPTCHA role system.</p>
       </div>
     </a>
 
-  </div>
-</section>
-
-<section id="updates">
-  <div class="section-head">
-    <h2>Updates</h2>
-  </div>
-
-  <div class="card">
-    <h3>Status</h3>
-    <p>In development.</p>
   </div>
 </section>
 
