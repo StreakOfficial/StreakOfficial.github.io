@@ -6,7 +6,6 @@
 
 <title>Streak | Discord</title>
 
-<!-- FAVICON (THIS IS WHAT YOU WANTED) -->
 <link rel="icon" type="image/png" href="favicon.png">
 
 <style>
@@ -16,7 +15,23 @@ body{background:#050008;color:white;font-family:Arial,sans-serif}
 
 header{position:sticky;top:0;z-index:100;background:rgba(5,0,8,.95);border-bottom:1px solid rgba(180,60,255,.4);backdrop-filter:blur(12px)}
 .nav{max-width:1200px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.logo{color:white;text-decoration:none;font-weight:bold;letter-spacing:4px}
+
+/* ONLY CHANGE: allow logo + text */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  letter-spacing:4px;
+}
+
+.logo img{
+  height:32px;
+  filter:drop-shadow(0 0 10px #b640ff);
+}
+
 .nav-links{display:flex;gap:10px;flex-wrap:wrap}
 .nav-links a{color:white;text-decoration:none;padding:9px 16px;border-radius:999px;border:1px solid rgba(180,60,255,.35);background:rgba(20,0,35,.35);transition:.3s}
 .nav-links a:hover{border-color:#d946ff;box-shadow:0 0 16px rgba(217,70,255,.35)}
@@ -59,7 +74,12 @@ footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,
 
 <header>
 <div class="nav">
-<a class="logo" href="index.html">STREAK</a>
+
+<!-- ONLY CHANGE: LOGO ADDED -->
+<a class="logo" href="index.html">
+  <img src="streak-logo.png">
+  STREAK
+</a>
 
 <div class="nav-links">
 <a href="index.html">Home</a>
@@ -68,6 +88,7 @@ footer{text-align:center;padding:34px 22px;border-top:1px solid rgba(198,89,255,
 <a href="index.html#updates">Updates</a>
 <a href="discord.html">Discord</a>
 </div>
+
 </div>
 </header>
 
@@ -143,4 +164,3 @@ Join Discord →
 
 </body>
 </html>
-
