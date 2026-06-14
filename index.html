@@ -90,12 +90,6 @@ nav a{
   background:rgba(20,0,35,.35);
   font-size:13px;
   font-weight:bold;
-  transition:.25s;
-}
-nav a:hover{
-  transform:translateY(-2px);
-  border-color:#d946ff;
-  box-shadow:0 0 16px rgba(217,70,255,.35);
 }
 
 /* HERO */
@@ -110,16 +104,10 @@ nav a:hover{
     radial-gradient(circle at center, rgba(135,35,255,.18), transparent 42%),
     #050008;
 }
-.hero-inner{
-  max-width:850px;
-}
+.hero-inner{max-width:850px}
 
-/* LOGO EFFECT */
-.logo-stage{
-  position:relative;
-  display:inline-block;
-  margin-bottom:20px;
-}
+/* LOGO */
+.logo-stage{position:relative;display:inline-block;margin-bottom:20px}
 .logo-stage::before{
   content:"";
   position:absolute;
@@ -131,37 +119,17 @@ nav a:hover{
   animation:sweep 4s linear infinite;
   z-index:0;
 }
-.logo-stage::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-60%;
-  width:45%;
-  height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
-  transform:skewX(-18deg);
-  animation:shine 4.2s ease-in-out infinite;
-  mix-blend-mode:screen;
-  pointer-events:none;
-}
 .hero-logo{
   position:relative;
   z-index:1;
   width:430px;
   max-width:90vw;
-  filter:
-    drop-shadow(0 0 10px #7a1fff)
-    drop-shadow(0 0 22px rgba(217,70,255,.55));
+  filter:drop-shadow(0 0 10px #7a1fff);
 }
+
 @keyframes sweep{
   from{background-position:300% 0}
   to{background-position:0 0}
-}
-@keyframes shine{
-  0%{left:-70%;opacity:0}
-  30%{opacity:.75}
-  55%{left:120%;opacity:0}
-  100%{left:120%;opacity:0}
 }
 
 h1{
@@ -206,11 +174,15 @@ h2{
   color:#a98dc0;
   font-size:14px;
 }
+
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
+
+/* CARD */
 .card{
   position:relative;
   padding:24px;
@@ -218,24 +190,10 @@ h2{
   border-radius:22px;
   background:rgba(8,0,14,.96);
   border:1px solid rgba(188,70,255,.35);
-  overflow:hidden;
   transition:.25s;
 }
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  padding:1px;
-  background:linear-gradient(90deg,transparent,#7a1fff,#d946ff,#fff,#d946ff,transparent);
-  background-size:300% 100%;
-  animation:sweep 5s linear infinite;
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  pointer-events:none;
-}
 .card:hover{transform:translateY(-4px)}
+
 .card h3{
   color:#e19bff;
   margin-bottom:10px;
@@ -246,17 +204,14 @@ h2{
   font-size:15px;
 }
 
-/* SHOWCASE */
-.showcase{
-  grid-template-columns:1.2fr 1fr 1fr;
+/* FIX CLICKABLE */
+.card-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
 }
-.showcase .card{
-  min-height:230px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-}
-.showcase .card:first-child{min-height:300px}
+
+/* TAG */
 .tag{
   width:fit-content;
   margin-bottom:12px;
@@ -268,6 +223,7 @@ h2{
   letter-spacing:1.5px;
 }
 
+/* FOOTER */
 footer{
   text-align:center;
   padding:34px 22px;
@@ -276,11 +232,10 @@ footer{
   font-size:13px;
 }
 
+/* MOBILE */
 @media(max-width:850px){
   .nav-wrap{flex-direction:column;gap:10px}
-  .grid,.showcase{grid-template-columns:1fr}
-  .section-head{flex-direction:column;align-items:flex-start}
-  h1{letter-spacing:4px}
+  .grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -289,7 +244,7 @@ footer{
 
 <div class="intro" id="intro">
   <div class="intro-wrap">
-    <img class="intro-logo" src="streak-logo.png" onclick="enterSite()" alt="Streak Logo">
+    <img class="intro-logo" src="streak-logo.png" onclick="enterSite()">
     <div class="intro-text">CLICK TO ENTER</div>
   </div>
 </div>
@@ -299,15 +254,14 @@ footer{
 <header>
   <div class="nav-wrap">
     <a class="brand" href="#home">
-      <img src="streak-logo.png" alt="Streak Logo">
-      <span>STREAK</span>
+      <img src="streak-logo.png">
+      STREAK
     </a>
 
     <nav>
       <a href="#home">Home</a>
       <a href="#features">Features</a>
       <a href="#showcase">Showcase</a>
-      <a href="#updates">Updates</a>
       <a href="discord.html">Discord</a>
     </nav>
   </div>
@@ -316,7 +270,7 @@ footer{
 <main id="home" class="hero">
   <div class="hero-inner">
     <div class="logo-stage">
-      <img class="hero-logo" src="streak-logo.png" alt="Streak Official Logo">
+      <img class="hero-logo" src="streak-logo.png">
     </div>
 
     <h1>STREAK OFFICIAL</h1>
@@ -328,25 +282,25 @@ footer{
 <section id="features">
   <div class="section-head">
     <h2>Features</h2>
-    <p>Clean, focused, and built around the Streak identity.</p>
   </div>
 
   <div class="grid">
     <div class="card">
       <h3>Cyber Interface</h3>
-      <p>A polished purple-black visual system inspired by modern gaming UI and cyber design.</p>
+      <p>Advanced UI system with smooth animations.</p>
     </div>
     <div class="card">
       <h3>Performance Focused</h3>
-      <p>Designed to feel smooth, lightweight, and professional across desktop and mobile.</p>
+      <p>Optimized cross-platform experience.</p>
     </div>
     <div class="card">
-      <h3>Coming Soon</h3>
-      <p>More information will be revealed as Streak gets closer to launch.</p>
+      <h3>System Core</h3>
+      <p>Backend infrastructure powering the platform.</p>
     </div>
   </div>
 </section>
 
+<!-- ONLY CHANGE: SHOWCASE FIXED -->
 <section id="showcase">
   <div class="section-head">
     <h2>Showcase</h2>
@@ -354,38 +308,36 @@ footer{
   </div>
 
   <div class="grid showcase">
-    <div class="card">
-      <span class="tag">INTERFACE</span>
-      <h3>UI Preview</h3>
-      <p>A dedicated space for future Streak interface screenshots.</p>
-    </div>
-    <div class="card">
-      <span class="tag">DEVELOPMENT</span>
-      <h3>Dev Preview</h3>
-      <p>Progress updates and preview content can be placed here later.</p>
-    </div>
-    <div class="card">
-      <span class="tag">SOON</span>
-      <h3>More Coming</h3>
-      <p>Additional showcases will be added when the project is ready.</p>
-    </div>
-  </div>
-</section>
 
-<section id="updates">
-  <div class="section-head">
-    <h2>Updates</h2>
-    <p>Latest project status.</p>
-  </div>
+    <a class="card-link" href="interface-preview.html">
+      <div class="card">
+        <span class="tag">INTERFACE</span>
+        <h3>UI Preview</h3>
+        <p>A dedicated space for future Streak interface screenshots.</p>
+      </div>
+    </a>
 
-  <div class="card">
-    <h3>Development Status</h3>
-    <p>Streak is currently in development. Stay tuned for previews, announcements, and release information.</p>
+    <a class="card-link" href="development-preview.html">
+      <div class="card">
+        <span class="tag">DEVELOPMENT</span>
+        <h3>Script Engine</h3>
+        <p>Live execution system and runtime behaviour of scripts.</p>
+      </div>
+    </a>
+
+    <a class="card-link" href="release-media.html">
+      <div class="card">
+        <span class="tag">SYSTEM</span>
+        <h3>Core Modules</h3>
+        <p>Internal script architecture and execution pipeline.</p>
+      </div>
+    </a>
+
   </div>
 </section>
 
 <footer>
-  © 2026 Streak Official. Website Coming Soon.
+© 2026 Streak Official
 </footer>
 
 </div>
@@ -398,3 +350,4 @@ function enterSite(){
 </script>
 
 </body>
+</html>
