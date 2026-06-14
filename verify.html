@@ -28,6 +28,8 @@
 
     <button onclick="verify()">Verify</button>
 
+    <p id="status" style="margin-top:10px;color:#aaa;"></p>
+
   </div>
 
 </div>
@@ -35,25 +37,40 @@
 <script>
 async function verify() {
 
+  const status = document.getElementById("status");
+  status.innerText = "Verifying...";
+
   const token = document.querySelector('[name="cf-turnstile-response"]').value;
 
   if (!token) {
-    alert("Complete CAPTCHA first");
+    status.innerText = "Please complete CAPTCHA first ❌";
     return;
   }
 
-  const res = await fetch("https://streak-api-ojbd.onrender.com/verify", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      captcha: token
-    })
-  });
+  try {
+    const res = await fetch("https://streak-api-ojbd.onrender.com/verify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        captcha: token
+      })
+    });
 
-  const data = await res.text();
-  alert(data);
+    const data = await res.text();
+
+    if (data.includes("CAPTCHA failed")) {
+      status.innerText = "Verification failed ❌";
+    } else if (data.includes("success")) {
+      status.innerText = "Verified successfully ✅";
+    } else {
+      status.innerText = data;
+    }
+
+  } catch (err) {
+    status.innerText = "Server error ❌";
+  }
 }
 </script>
 
